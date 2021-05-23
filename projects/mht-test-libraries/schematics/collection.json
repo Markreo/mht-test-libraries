@@ -1,0 +1,15 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "generator-code": {
+      "description": "Generator code",
+      "factory": "./generator-code/index#main",
+      "schema": "./generator-code/schema.json"
+    },
+    "generator-file": {
+      "description": "Generator file",
+      "factory": "./generator-file/index#createFile",
+      "schema": "./generator-file/schema.json"
+    }
+  }
+}

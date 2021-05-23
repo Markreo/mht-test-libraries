@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "generator-file",
+  "title": "Hello",
+  "type": "object",
+  "description": "say hello to someone",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "the name of the person",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Who do you want to greet?"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

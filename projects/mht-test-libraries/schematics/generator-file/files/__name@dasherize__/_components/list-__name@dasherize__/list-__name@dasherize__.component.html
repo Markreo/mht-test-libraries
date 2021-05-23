@@ -1,0 +1,108 @@
+<nz-page-header class="site-page-header">
+  <!--breadcrumb-->
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item>Hệ thống</nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      <a>{{title}}</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>Danh sách {{title}}</nz-breadcrumb-item>
+  </nz-breadcrumb>
+
+  <!--title-->
+  <nz-page-header-title>Danh sách {{title}}</nz-page-header-title>
+
+  <!--tags-->
+  <nz-page-header-tags>
+    <nz-tag [nzColor]="'blue'" nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu1">
+      Tất cả
+      <i nz-icon nzType="down"></i>
+    </nz-tag>
+  </nz-page-header-tags>
+  <nz-dropdown-menu #menu1="nzDropdownMenu">
+    <ul nz-menu>
+      <li nz-menu-item>1st menu item</li>
+      <li nz-menu-item>2nd menu item</li>
+      <li nz-menu-divider></li>
+      <li nz-menu-item nzDisabled>disabled menu item</li>
+      <li nz-submenu nzTitle="sub menu">
+        <ul>
+          <li nz-menu-item>3rd menu item</li>
+          <li nz-menu-item>4th menu item</li>
+        </ul>
+      </li>
+      <li nz-submenu nzDisabled nzTitle="disabled sub menu">
+        <ul>
+          <li nz-menu-item>3rd menu item</li>
+          <li nz-menu-item>4th menu item</li>
+        </ul>
+      </li>
+    </ul>
+  </nz-dropdown-menu>
+
+
+  <!--extra-->
+  <nz-page-header-extra>
+    <button nz-button nzType="primary" [routerLink]="[ 'form', 'create']">Thêm</button>
+    <button nz-button (click)="handleExport()">Xuất file</button>
+    <button nz-button nz-dropdown [nzDropdownMenu]="menu">
+      <i nz-icon nzType="ellipsis" nzTheme="outline" style="font-size: 20px; vertical-align: top;"></i>
+    </button>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu>
+        <li nz-menu-item>1st menu item length</li>
+        <li nz-menu-item>2nd menu item length</li>
+        <li nz-menu-item>3rd menu item length</li>
+      </ul>
+    </nz-dropdown-menu>
+  </nz-page-header-extra>
+
+  <!--content-->
+  <nz-page-header-content>
+<!--    todo: nz-space-->
+    <div style="display: flex">
+      <div style="flex: 1">
+        <nz-input-group [nzSuffix]="suffixIconSearch">
+          <input type="text" nz-input placeholder="Tìm kiếm" (input)="triggerSearch($event)"/>
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+          <i nz-icon nzType="search"></i>
+        </ng-template>
+      </div>
+      <div class="page-header-button">
+        <button nz-button nzType="default"><i nz-icon nzType="bar-chart" nzTheme="outline"></i></button>
+        <button nz-button nzType="default"><i nz-icon nzType="reload" nzTheme="outline"></i></button>
+        <button nz-button nzType="default"><i nz-icon nzType="filter" nzTheme="fill"></i></button>
+      </div>
+    </div>
+
+  </nz-page-header-content>
+</nz-page-header>
+<nz-table #table
+          [nzData]="data"
+          [nzTotal]="getData.total"
+          [nzPageSize]="getData.filterObject.limit"
+          [nzPageIndex]="getData.filterObject.page"
+          [nzFrontPagination]="false"
+          [nzBordered]="true"
+          [nzLoading]="getData.loading"
+          (nzPageIndexChange)="getData.updatePageIndex($event)"
+          (nzPageSizeChange)="getData.updatePageSize($event)">
+  <thead>
+  <tr>
+    <th *ngFor="let column of columns">{{column.label}}</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of table.data">
+    <td>{{ data.name }}</td>
+    <td>{{ data.age }}</td>
+    <td>{{ data.address }}</td>
+    <td>
+      <a [routerLink]="['form', data.id]">Edit</a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a [routerLink]="['form', data.id]" class="text-danger" nz-typography nzType="danger" (click)="handleDelete(data)">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

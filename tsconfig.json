@@ -8,6 +8,12 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
+    "paths": {
+      "mht-test-libraries": [
+        "dist/mht-test-libraries/mht-test-libraries",
+        "dist/mht-test-libraries"
+      ]
+    },
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",

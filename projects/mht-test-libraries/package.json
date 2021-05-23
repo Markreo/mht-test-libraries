@@ -1,0 +1,21 @@
+{
+  "name": "mht-test-libraries",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "../../node_modules/.bin/tsc -p tsconfig.schematics.json",
+    "copy:schemas": "mkdir -p ../../dist/mht-test-libraries/schematics/generator-code/ && cp -p schematics/generator-code/schema.json ../../dist/mht-test-libraries/schematics/generator-code/",
+    "copy:schemas2": "mkdir -p ../../dist/mht-test-libraries/schematics/generator-file/ && cp -p schematics/generator-file/schema.json ../../dist/mht-test-libraries/schematics/generator-file/",
+    "copy:files1": "mkdir -p ../../dist/mht-test-libraries/schematics/generator-code/files/ && cp -p -r schematics/generator-code/files/** ../../dist/mht-test-libraries/schematics/generator-code/files/",
+    "copy:files2": "mkdir -p ../../dist/mht-test-libraries/schematics/generator-file/files/ && cp -p -r schematics/generator-file/files/** ../../dist/mht-test-libraries/schematics/generator-file/files/",
+    "copy:collection": "cp schematics/collection.json ../../dist/mht-test-libraries/schematics/collection.json",
+    "postbuild": "npm run copy:schemas && npm run copy:schemas2 && npm run copy:files1 && npm run copy:files2 && npm run copy:collection"
+  },
+  "peerDependencies": {
+    "@angular/common": "^11.2.14",
+    "@angular/core": "^11.2.14"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "schematics": "./schematics/collection.json"
+}

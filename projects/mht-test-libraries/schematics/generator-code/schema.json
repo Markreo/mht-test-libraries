@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "Generator",
+  "title": "Generator code",
+  "type": "object",
+  "description": "Generator code",
+  "properties": {
+    "file_name": {
+      "type": "string",
+      "description": "file name",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "File source code?"
+    },
+    "path": {
+      "type": "string",
+      "description": "path to file"
+    }
+  },
+  "required": [
+    "file_name"
+  ]
+}

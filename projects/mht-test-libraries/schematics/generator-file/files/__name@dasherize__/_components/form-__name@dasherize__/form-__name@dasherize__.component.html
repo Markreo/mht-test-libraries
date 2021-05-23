@@ -1,0 +1,13 @@
+<form nz-form [formGroup]="form" (ngSubmit)="handleSubmit()">
+  <nz-form-item *ngFor="let field of fields">
+    <nz-form-label [nzSpan]="7" [nzRequired]="field.isRequired()">{{field.label}}</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <mht-field [field]="field"></mht-field>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzOffset]="7" [nzSpan]="12">
+      <button nz-button nzType="primary" [disabled]="!form.valid || submitting">Submit</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
