@@ -22,20 +22,6 @@
     <ul nz-menu>
       <li nz-menu-item>1st menu item</li>
       <li nz-menu-item>2nd menu item</li>
-      <li nz-menu-divider></li>
-      <li nz-menu-item nzDisabled>disabled menu item</li>
-      <li nz-submenu nzTitle="sub menu">
-        <ul>
-          <li nz-menu-item>3rd menu item</li>
-          <li nz-menu-item>4th menu item</li>
-        </ul>
-      </li>
-      <li nz-submenu nzDisabled nzTitle="disabled sub menu">
-        <ul>
-          <li nz-menu-item>3rd menu item</li>
-          <li nz-menu-item>4th menu item</li>
-        </ul>
-      </li>
     </ul>
   </nz-dropdown-menu>
 
@@ -58,9 +44,8 @@
 
   <!--content-->
   <nz-page-header-content>
-<!--    todo: nz-space-->
     <div style="display: flex">
-      <div style="flex: 1">
+      <div style="flex: 1; margin-right: 8px">
         <nz-input-group [nzSuffix]="suffixIconSearch">
           <input type="text" nz-input placeholder="Tìm kiếm" (input)="triggerSearch($event)"/>
         </nz-input-group>
@@ -69,9 +54,11 @@
         </ng-template>
       </div>
       <div class="page-header-button">
-        <button nz-button nzType="default"><i nz-icon nzType="bar-chart" nzTheme="outline"></i></button>
-        <button nz-button nzType="default"><i nz-icon nzType="reload" nzTheme="outline"></i></button>
-        <button nz-button nzType="default"><i nz-icon nzType="filter" nzTheme="fill"></i></button>
+        <nz-space>
+          <button *nzSpaceItem nz-button nzType="default"><i nz-icon nzType="bar-chart" nzTheme="outline"></i></button>
+          <button *nzSpaceItem nz-button nzType="default"><i nz-icon nzType="reload" nzTheme="outline"></i></button>
+          <button *nzSpaceItem nz-button nzType="default"><i nz-icon nzType="filter" nzTheme="fill"></i></button>
+        </nz-space>
       </div>
     </div>
 
@@ -101,7 +88,8 @@
     <td>
       <a [routerLink]="['form', data.id]">Edit</a>
       <nz-divider nzType="vertical"></nz-divider>
-      <a [routerLink]="['form', data.id]" class="text-danger" nz-typography nzType="danger" (click)="handleDelete(data)">Delete</a>
+      <a [routerLink]="['form', data.id]" class="text-danger" nz-typography nzType="danger"
+         (click)="handleDelete(data)">Delete</a>
     </td>
   </tr>
   </tbody>
