@@ -4,12 +4,12 @@ import {Injectable, Input} from '@angular/core';
 import {noop} from 'rxjs';
 
 @Injectable()
-export class FieldBase <T extends BaseField = BaseField>  implements ControlValueAccessor, Validator {
+export class FieldBase<T extends BaseField = BaseField> implements ControlValueAccessor, Validator {
   @Input() field: T;
   isDisabled = false;
   innerValue;
 
-  get value() {
+  get value(): any {
     return this.innerValue;
   }
 
@@ -51,7 +51,7 @@ export class FieldBase <T extends BaseField = BaseField>  implements ControlValu
     this.isDisabled = isDisabled;
   }
 
-  registerOnValidatorChange(fn: any) {
+  registerOnValidatorChange(fn: any): void {
     this.triggerValidator = fn;
   }
 

@@ -3,7 +3,6 @@
  */
 
 export {FieldService} from './field/services/field.service';
-export {SelectObjectField} from './field/models/fields/select-object.field';
 export {FieldModule} from './field/field.module';
 
 export {fieldToColumn} from './field/functions/field-to-column';
@@ -16,3 +15,11 @@ export {FieldInputNumberComponent} from './field/components/field-input-number/f
 export {FieldInputTextComponent} from './field/components/field-input-text/field-input-text.component';
 export {FieldInputCurrencyComponent} from './field/components/field-input-currency/field-input-currency.component';
 export {FieldComponent} from './field/components/field/field.component';
+
+export {SelectObjectField} from './field/models/fields/select-object.field';
+export {InputTextField} from './field/models/fields/input-text.field';
+export {InputNumberField} from './field/models/fields/input-number.field';
+export {InputPasswordField} from './field/models/fields/input-password.field';
+export {InputCurrencyField} from './field/models/fields/input-currency.field';
+export {SelectDateField} from './field/models/fields/select-date.field';
+export {SelectEnumField} from './field/models/fields/select-enum.field';

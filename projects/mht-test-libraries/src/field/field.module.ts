@@ -1,4 +1,4 @@
-import {Injector, ModuleWithProviders, NgModule} from '@angular/core';
+import {Injector, ModuleWithProviders, NgModule, Provider} from '@angular/core';
 import {FieldComponent} from './components/field/field.component';
 import {FieldInputCurrencyComponent} from './components/field-input-currency/field-input-currency.component';
 import {FieldInputTextComponent} from './components/field-input-text/field-input-text.component';
@@ -24,12 +24,12 @@ const exs = [
   exports: [...exs]
 })
 export class FieldModule {
-  static forRoot(providers): ModuleWithProviders<FieldModule> {
+  static forRoot(providers: { buildEndpointFactory: Provider }): ModuleWithProviders<FieldModule> {
     return {
       ngModule: FieldModule,
       providers: [
         FieldService,
-        providers.buildEnpointFactory || {provide: BuildEndpointFactory, useValue: BuildFakeEndpoint}]
+        providers.buildEndpointFactory || {provide: BuildEndpointFactory, useValue: BuildFakeEndpoint}]
     };
   }
 

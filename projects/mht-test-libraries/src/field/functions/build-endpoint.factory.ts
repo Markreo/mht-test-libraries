@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 
+@Injectable()
 export abstract class BuildEndpointFactory {
   abstract buildUrl(endpoint: string): string;
 }
