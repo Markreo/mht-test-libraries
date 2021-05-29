@@ -24,6 +24,7 @@ const exs = [
   exports: [...exs]
 })
 export class FieldModule {
+  // todo: loadConfig
   static forRoot(providers: { buildEndpointFactory: Provider }): ModuleWithProviders<FieldModule> {
     return {
       ngModule: FieldModule,

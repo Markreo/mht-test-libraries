@@ -1,6 +1,9 @@
-import {FieldBase} from '../components/field-base';
 import {TableColumn} from '../models/table-column';
+import {BaseField} from '../models/fields/base.field';
 
-export function fieldToColumn(field: FieldBase): TableColumn {
-  return new TableColumn();
+export function fieldToColumn(field: BaseField): TableColumn {
+  return new TableColumn({
+    key: field.key,
+    label: field.label
+  });
 }
