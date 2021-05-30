@@ -4,6 +4,7 @@
 
 export {FieldService} from './field/services/field.service';
 export {FieldModule} from './field/field.module';
+export {TableColumn} from './field/models/table-column';
 
 export * from './field/models/fields';
 export * from './field/components';

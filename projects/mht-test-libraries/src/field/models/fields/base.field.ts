@@ -24,4 +24,9 @@ export class BaseField {
     this._validators = value || [];
     this.isRequired = this._validators.includes(Validators.required);
   }
+
+  renderValue(row): string {
+    return row[this.key];
+  }
+
 }
