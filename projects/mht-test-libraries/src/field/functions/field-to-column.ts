@@ -5,6 +5,8 @@ export function fieldToColumn(field: BaseField): TableColumn {
   return new TableColumn({
     key: field.key,
     label: field.label,
-    renderValue: field.renderValue
+    renderValue: (row) => {
+      return field.renderValue(row);
+    }
   });
 }
