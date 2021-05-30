@@ -3,7 +3,7 @@ import {FieldBase} from '../field-base';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {debounceTime, map, switchMap} from 'rxjs/operators';
-import {BuildEndpointFactory} from '../../functions';
+import {BuildEndpointFactory, FormatDateFactory} from '../../functions';
 import {SelectObjectField} from '../../models/fields/select-object.field';
 import {RequestQueryBuilder} from '@nestjsx/crud-request';
 
@@ -17,8 +17,9 @@ export class FieldSelectObjectComponent extends FieldBase<SelectObjectField> imp
   optionList: { value: any, label: string }[] = [];
   isLoading = false;
 
-  constructor(private http: HttpClient, private buildEndpointFactory: BuildEndpointFactory) {
+  constructor(private http: HttpClient, private buildEndpointFactory: BuildEndpointFactory, private formatDateFactory: FormatDateFactory) {
     super();
+    console.log(this.formatDateFactory.formatDate(new Date(), 'dd/MM/yyyy'));
   }
 
   onSearch(value: string): void {

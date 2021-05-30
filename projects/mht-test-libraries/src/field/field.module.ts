@@ -1,6 +1,6 @@
 import {Injector, ModuleWithProviders, NgModule, Provider} from '@angular/core';
 import {FieldService} from './services/field.service';
-import {BuildEndpointFactory, BuildFakeEndpoint} from './functions';
+import {BuildEndpointFactory, BuildFakeEndpoint, FakeFormatDateFactory, FormatDateFactory} from './functions';
 import {setFieldInjector} from './field-injector';
 import {
   FieldComponent, FieldInputCurrencyComponent,
@@ -9,7 +9,6 @@ import {
   FieldSelectEnumComponent,
   FieldSelectObjectComponent
 } from './components';
-import {FakeFormatDateFactory, FormatDateFactory} from './functions/format-date.factory';
 
 const exs = [
   FieldComponent,

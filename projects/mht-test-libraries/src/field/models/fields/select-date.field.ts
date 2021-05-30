@@ -1,5 +1,11 @@
 import {SelectDateTimeField} from './select-date-time.field';
 
 export class SelectDateField extends SelectDateTimeField {
-  format = 'dd/MM/yyy';
+
+  constructor(options: Partial<SelectDateField> = {}) {
+    const init = {
+      format: 'DD/MM/YYYY'
+    };
+    super({...init, ...options});
+  }
 }
