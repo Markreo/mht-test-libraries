@@ -1,13 +1,15 @@
 import {Injector, ModuleWithProviders, NgModule, Provider} from '@angular/core';
-import {FieldComponent} from './components/field/field.component';
-import {FieldInputCurrencyComponent} from './components/field-input-currency/field-input-currency.component';
-import {FieldInputTextComponent} from './components/field-input-text/field-input-text.component';
-import {FieldInputNumberComponent} from './components/field-input-number/field-input-number.component';
-import {FieldSelectEnumComponent} from './components/field-select-enum/field-select-enum.component';
-import {FieldSelectObjectComponent} from './components/field-select-object/field-select-object.component';
 import {FieldService} from './services/field.service';
-import {BuildEndpointFactory, BuildFakeEndpoint} from './functions/build-endpoint.factory';
+import {BuildEndpointFactory, BuildFakeEndpoint} from './functions';
 import {setFieldInjector} from './field-injector';
+import {
+  FieldComponent, FieldInputCurrencyComponent,
+  FieldInputNumberComponent,
+  FieldInputTextComponent,
+  FieldSelectEnumComponent,
+  FieldSelectObjectComponent
+} from './components';
+import {FakeFormatDateFactory, FormatDateFactory} from './functions/format-date.factory';
 
 const exs = [
   FieldComponent,
@@ -25,12 +27,25 @@ const exs = [
 })
 export class FieldModule {
   // todo: loadConfig
-  static forRoot(providers: { buildEndpointFactory: Provider }): ModuleWithProviders<FieldModule> {
+  static forRoot(providers: { buildEndpointFactory: Provider, formatDateFactory: Provider }): ModuleWithProviders<FieldModule> {
     return {
       ngModule: FieldModule,
       providers: [
         FieldService,
-        providers.buildEndpointFactory || {provide: BuildEndpointFactory, useValue: BuildFakeEndpoint}]
+        providers.buildEndpointFactory || {provide: BuildEndpointFactory, useClass: BuildFakeEndpoint},
+        providers.formatDateFactory || {provide: FormatDateFactory, useClass: FakeFormatDateFactory},
+      ]
+    };
+  }
+
+  static forChild(providers: { buildEndpointFactory: Provider, formatDateFactory: Provider }): ModuleWithProviders<FieldModule> {
+    return {
+      ngModule: FieldModule,
+      providers: [
+        FieldService,
+        providers.buildEndpointFactory || {provide: BuildEndpointFactory, useValue: BuildFakeEndpoint},
+        providers.formatDateFactory || {provide: FormatDateFactory, useValue: FakeFormatDateFactory},
+      ]
     };
   }
 

@@ -16,7 +16,7 @@ export let FieldInjector: Injector;
  * which trying to make changes after using `import {AppInjector}` would throw:
  * "TS2539: Cannot assign to 'AppInjector' because it is not a variable".
  */
-export function setFieldInjector(injector: Injector) {
+export function setFieldInjector(injector: Injector): void {
   if (FieldInjector) {
     // Should not happen
     console.error('Programming error: FieldInjector was already set');

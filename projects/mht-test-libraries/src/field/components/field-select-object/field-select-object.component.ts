@@ -3,7 +3,7 @@ import {FieldBase} from '../field-base';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {debounceTime, map, switchMap} from 'rxjs/operators';
-import {BuildEndpointFactory} from '../../functions/build-endpoint.factory';
+import {BuildEndpointFactory} from '../../functions';
 import {SelectObjectField} from '../../models/fields/select-object.field';
 import {RequestQueryBuilder} from '@nestjsx/crud-request';
 
