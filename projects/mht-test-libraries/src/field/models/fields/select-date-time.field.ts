@@ -12,6 +12,6 @@ export class SelectDateTimeField extends BaseField {
   }
 
   renderValue(row): string {
-    return FieldInjector.get(FormatDateFactory).formatDate(new Date(), this.format)
+    return FieldInjector.get(FormatDateFactory).formatDate(row[this.key], this.format);
   }
 }

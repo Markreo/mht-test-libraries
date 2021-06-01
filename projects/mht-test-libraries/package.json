@@ -1,6 +1,6 @@
 {
   "name": "mht-test-libraries",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "scripts": {
     "build": "../../node_modules/.bin/tsc -p tsconfig.schematics.json",
     "copy:schemas": "mkdir -p ../../dist/mht-test-libraries/schematics/generator-code/ && cp -p schematics/generator-code/schema.json ../../dist/mht-test-libraries/schematics/generator-code/",

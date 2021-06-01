@@ -1,6 +1,6 @@
 <form nz-form [formGroup]="form" (ngSubmit)="handleSubmit()">
   <nz-form-item *ngFor="let field of fields">
-    <nz-form-label [nzSpan]="7" [nzRequired]="field.isRequired()">{{field.label}}</nz-form-label>
+    <nz-form-label [nzSpan]="7" [nzRequired]="field.isRequired">{{field.label}}</nz-form-label>
     <nz-form-control [nzSpan]="12">
       <mht-field [field]="field"></mht-field>
     </nz-form-control>
