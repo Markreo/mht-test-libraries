@@ -1,12 +1,12 @@
-import {Component, ComponentFactoryResolver, Input, OnInit, ViewContainerRef} from '@angular/core';
-import {BaseField} from '../../models/fields';
-import {BoundInputTextComponent} from '..';
+import {Component, ComponentFactoryResolver, Input, OnInit, Type, ViewContainerRef} from '@angular/core';
 import {FormGroup} from '@angular/forms';
+import {Bound} from '../bound';
+import {BoundInputPasswordComponent, BoundInputTextComponent} from '..';
+import {BaseField, InputPasswordField, InputTextField} from '../../models/fields';
 
 @Component({
   selector: 'lib-field',
-  templateUrl: './field.component.html',
-  styleUrls: ['./field.component.css'],
+  template: '',
 })
 export class FieldComponent implements OnInit {
   @Input() field: BaseField;
@@ -17,12 +17,29 @@ export class FieldComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(BoundInputTextComponent);
-    // viewContainerRef.clear();
-    this.viewContainerRef.clear();
+    this.loadComponent();
+  }
 
-    const componentRef = this.viewContainerRef.createComponent<BoundInputTextComponent>(componentFactory);
-    componentRef.instance.field = this.field;
-    componentRef.instance.form = this.form;
+  loadComponent(): void {
+    if (this.viewContainerRef) {
+      this.viewContainerRef.clear();
+    }
+
+    const component: Type<Bound> = this.switchComponent(this.field);
+    if (component) {
+      const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
+      const componentRef = this.viewContainerRef.createComponent<Bound>(componentFactory);
+      componentRef.instance.field = this.field;
+      componentRef.instance.form = this.form;
+    }
+  }
+
+  switchComponent(field): Type<Bound> {
+    switch (true) {
+      case field instanceof InputPasswordField:
+        return BoundInputPasswordComponent;
+      case field instanceof InputTextField:
+        return BoundInputTextComponent;
+    }
   }
 }

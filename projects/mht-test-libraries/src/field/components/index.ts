@@ -1,5 +1,5 @@
 export * from './field-base';
-export * from './field/field.component';
+// export * from './field/field.component';
 export * from './field-input-currency/field-input-currency.component';
 export * from './field-input-number/field-input-number.component';
 export * from './field-input-password/field-input-password.component';

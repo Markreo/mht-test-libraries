@@ -5,7 +5,6 @@ import {setFieldInjector} from './field-injector';
 import {
   BoundInputPasswordComponent,
   BoundInputTextComponent,
-  FieldComponent,
   FieldInputCurrencyComponent,
   FieldInputNumberComponent,
   FieldInputPasswordComponent,
@@ -15,6 +14,7 @@ import {
 } from './components';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NzInputModule} from 'ng-zorro-antd/input';
+import {FieldComponent} from './components/field/field.component';
 
 const exs = [
   FieldComponent,
