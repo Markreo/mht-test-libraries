@@ -3,31 +3,37 @@ import {FieldService} from './services/field.service';
 import {BuildEndpointFactory, BuildFakeEndpoint, FakeFormatDateFactory, FormatDateFactory} from './functions';
 import {setFieldInjector} from './field-injector';
 import {
+  BoundInputPasswordComponent,
   BoundInputTextComponent,
   FieldComponent,
   FieldInputCurrencyComponent,
   FieldInputNumberComponent,
+  FieldInputPasswordComponent,
   FieldInputTextComponent,
   FieldSelectEnumComponent,
   FieldSelectObjectComponent
 } from './components';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NzInputModule} from 'ng-zorro-antd/input';
 
 const exs = [
   FieldComponent,
   FieldInputCurrencyComponent,
   FieldInputTextComponent,
   FieldInputNumberComponent,
+  FieldInputPasswordComponent,
   FieldSelectEnumComponent,
   FieldSelectObjectComponent
 ];
 
-const bounds = [BoundInputTextComponent];
+const bounds = [BoundInputTextComponent, BoundInputPasswordComponent];
 
 @NgModule({
   declarations: [...exs, ...bounds],
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NzInputModule,
+    FormsModule
   ],
   entryComponents: bounds,
   exports: [...exs]
@@ -41,17 +47,6 @@ export class FieldModule {
         FieldService,
         providers.buildEndpointFactory || {provide: BuildEndpointFactory, useClass: BuildFakeEndpoint},
         providers.formatDateFactory || {provide: FormatDateFactory, useClass: FakeFormatDateFactory},
-      ]
-    };
-  }
-
-  static forChild(providers: { buildEndpointFactory: Provider, formatDateFactory: Provider }): ModuleWithProviders<FieldModule> {
-    return {
-      ngModule: FieldModule,
-      providers: [
-        FieldService,
-        providers.buildEndpointFactory || {provide: BuildEndpointFactory, useValue: BuildFakeEndpoint},
-        providers.formatDateFactory || {provide: FormatDateFactory, useValue: FakeFormatDateFactory},
       ]
     };
   }

@@ -7,7 +7,7 @@ import {Bound} from '../bound';
   selector: 'lib-bound-input-text',
   template: `
     <div [formGroup]="form">
-      <input [formControlName]="field.key">
+      <lib-field-input-text [field]="field" [formControlName]="field.key"></lib-field-input-text>
     </div>
   `
 })
