@@ -15,6 +15,7 @@ import {
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NzInputModule} from 'ng-zorro-antd/input';
 import {FieldComponent} from './components/field/field.component';
+import {CommonModule} from '@angular/common';
 
 const exs = [
   FieldComponent,
@@ -33,7 +34,8 @@ const bounds = [BoundInputTextComponent, BoundInputPasswordComponent];
   imports: [
     ReactiveFormsModule,
     NzInputModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   entryComponents: bounds,
   exports: [...exs]

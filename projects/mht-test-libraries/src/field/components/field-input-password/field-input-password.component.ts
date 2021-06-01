@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, forwardRef, OnInit} from '@angular/core';
 import {Bound} from '../bound';
 import {FieldBase} from '../field-base';
+import {NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
   selector: 'lib-bound-input-password',
@@ -17,8 +18,15 @@ export class BoundInputPasswordComponent extends Bound implements OnInit {
 
 @Component({
   selector: 'lib-field-input-password',
-  templateUrl: './field-input-password.component.html',
-  styleUrls: ['./field-input-password.component.css']
+  template: `<input nz-input type="password" [(ngModel)]="value" [placeholder]="field?.label">`,
+  styleUrls: ['./field-input-password.component.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => FieldInputPasswordComponent),
+      multi: true
+    }
+  ]
 })
 export class FieldInputPasswordComponent extends FieldBase {
   constructor() {

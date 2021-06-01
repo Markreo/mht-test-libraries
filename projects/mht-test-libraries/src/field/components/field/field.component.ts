@@ -12,6 +12,7 @@ export class FieldComponent implements OnInit {
   @Input() field: BaseField;
   @Input() form: FormGroup;
 
+
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
               private viewContainerRef: ViewContainerRef) {
   }
@@ -39,6 +40,8 @@ export class FieldComponent implements OnInit {
       case field instanceof InputPasswordField:
         return BoundInputPasswordComponent;
       case field instanceof InputTextField:
+        return BoundInputTextComponent;
+      default:
         return BoundInputTextComponent;
     }
   }

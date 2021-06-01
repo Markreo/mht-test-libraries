@@ -13,14 +13,12 @@ import {Bound} from '../bound';
 })
 export class BoundInputTextComponent extends Bound implements OnInit {
   ngOnInit(): void {
-    console.log('form', this.form);
-    console.log('field', this.field);
   }
 }
 
 @Component({
   selector: 'lib-field-input-text',
-  templateUrl: './field-input-text.component.html',
+  template: `<input nz-input type="text" [(ngModel)]="value" [placeholder]="field?.label">`,
   styleUrls: ['./field-input-text.component.css'],
   providers: [
     {
