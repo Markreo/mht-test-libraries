@@ -1,4 +1,4 @@
-import {BaseField} from '../models/fields/base.field';
+import {BaseField} from '../models/fields';
 import {AbstractControl, ControlValueAccessor, ValidationErrors, Validator, ValidatorFn} from '@angular/forms';
 import {Injectable, Input} from '@angular/core';
 import {noop} from 'rxjs';

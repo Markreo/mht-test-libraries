@@ -1,5 +1,5 @@
 import {TableColumn} from '../models/table-column';
-import {BaseField} from '../models/fields/base.field';
+import {BaseField} from '../models/fields';
 import {fieldToColumn} from './field-to-column';
 
 export function fieldToColumns(fields: BaseField[]): TableColumn[] {

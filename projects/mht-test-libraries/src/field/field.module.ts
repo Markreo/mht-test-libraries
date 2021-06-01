@@ -3,12 +3,15 @@ import {FieldService} from './services/field.service';
 import {BuildEndpointFactory, BuildFakeEndpoint, FakeFormatDateFactory, FormatDateFactory} from './functions';
 import {setFieldInjector} from './field-injector';
 import {
-  FieldComponent, FieldInputCurrencyComponent,
+  BoundInputTextComponent,
+  FieldComponent,
+  FieldInputCurrencyComponent,
   FieldInputNumberComponent,
   FieldInputTextComponent,
   FieldSelectEnumComponent,
   FieldSelectObjectComponent
 } from './components';
+import {ReactiveFormsModule} from '@angular/forms';
 
 const exs = [
   FieldComponent,
@@ -19,9 +22,14 @@ const exs = [
   FieldSelectObjectComponent
 ];
 
+const bounds = [BoundInputTextComponent];
+
 @NgModule({
-  declarations: exs,
-  imports: [],
+  declarations: [...exs, ...bounds],
+  imports: [
+    ReactiveFormsModule
+  ],
+  entryComponents: bounds,
   exports: [...exs]
 })
 export class FieldModule {
