@@ -6,7 +6,9 @@ import {BaseField, InputPasswordField, InputTextField} from '../../models/fields
 
 @Component({
   selector: 'lib-field',
-  template: '',
+  template: `
+    <lib-bound-input-text [form]="form" [field]="field"></lib-bound-input-text>
+  `,
 })
 export class FieldComponent implements OnInit {
   @Input() field: BaseField;
@@ -18,7 +20,7 @@ export class FieldComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadComponent();
+    // this.loadComponent();
   }
 
   loadComponent(): void {

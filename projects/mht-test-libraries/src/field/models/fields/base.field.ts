@@ -4,6 +4,7 @@ export class BaseField {
 
   key: string;
   label: string;
+  disabled: boolean;
 
   // tslint:disable-next-line:variable-name
   private _validators: ValidatorFn[] = [];
@@ -14,6 +15,7 @@ export class BaseField {
     this.key = options.key;
     this.label = options.label;
     this.validators = options.validators;
+    this.disabled = options.disabled || false;
   }
 
   get validators(): ValidatorFn[] {

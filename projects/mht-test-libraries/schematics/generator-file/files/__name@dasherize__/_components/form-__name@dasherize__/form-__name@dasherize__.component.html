@@ -1,7 +1,8 @@
 <form *ngIf="form" nz-form [formGroup]="form" (ngSubmit)="handleSubmit()">
   <nz-form-item *ngFor="let field of fields">
     <nz-form-label [nzSpan]="7" [nzRequired]="field.isRequired">{{field.label}}</nz-form-label>
-    <nz-form-control [nzSpan]="12">
+    <nz-form-control [nzSpan]="12" [nzValidateStatus]="form.get(field.key)"
+                     [nzAutoTips]="form.get(field.key).errors | buildAutoTip: field.label">
       <mht-field [field]="field"></mht-field>
     </nz-form-control>
   </nz-form-item>
