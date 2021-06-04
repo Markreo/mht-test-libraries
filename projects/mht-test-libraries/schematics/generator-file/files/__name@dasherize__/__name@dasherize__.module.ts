@@ -7,7 +7,8 @@ import {<%= classify(name) %>RoutingModule} from './<%= dasherize(name) %>.routi
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AntProviderModule} from '../ant-provider.module';
 import {FieldModule} from 'mht-test-libraries';
-
+import {SharedModule} from '../shared/shared.module';
+import {IconsProviderModule} from '../icons-provider.module';
 @NgModule({
   declarations: [List<%= classify(name) %>Component, Detail<%= classify(name) %>Component, Form<%= classify(name) %>Component],
   imports: [
@@ -15,6 +16,7 @@ import {FieldModule} from 'mht-test-libraries';
     <%= classify(name) %>RoutingModule,
     ReactiveFormsModule,
     SharedModule,
+    IconsProviderModule,
     AntProviderModule,
     FormsModule,
     FieldModule
