@@ -7,7 +7,6 @@ export class Select<%= classify(name) %>Field extends SelectObjectField {
     const init = {
       key: '<%= underscore(name) %>',
       label: LABEL_<%= name.toUpperCase() %>,
-      validators: [Validators.required],
       endpoint: ENDPOINT_<%= name.toUpperCase() %>
     };
     super(Object.assign(init, options));

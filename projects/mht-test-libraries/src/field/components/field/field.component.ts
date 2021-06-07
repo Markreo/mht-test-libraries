@@ -1,8 +1,14 @@
 import {Component, ComponentFactoryResolver, Input, OnInit, Type, ViewContainerRef} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {Bound} from '../bound';
-import {BoundInputPasswordComponent, BoundInputTextareaComponent, BoundInputTextComponent, BoundSelectDateComponent} from '..';
-import {BaseField, InputPasswordField, InputTextareaField, InputTextField, SelectDateField} from '../../models/fields';
+import {
+  BoundInputPasswordComponent,
+  BoundInputTextareaComponent,
+  BoundInputTextComponent,
+  BoundSelectDateComponent,
+  BoundSelectObjectComponent
+} from '..';
+import {BaseField, InputPasswordField, InputTextareaField, InputTextField, SelectDateField, SelectObjectField} from '../../models/fields';
 
 @Component({
   selector: 'lib-field',
@@ -47,6 +53,8 @@ export class FieldComponent implements OnInit {
         return BoundInputTextComponent;
       case field instanceof SelectDateField:
         return BoundSelectDateComponent;
+      case field instanceof SelectObjectField:
+        return BoundSelectObjectComponent;
       default:
         return BoundInputTextComponent;
     }

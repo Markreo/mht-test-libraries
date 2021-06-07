@@ -1,34 +1,51 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, forwardRef, OnInit} from '@angular/core';
 import {FieldBase} from '../field-base';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {debounceTime, map, switchMap} from 'rxjs/operators';
-import {BuildEndpointFactory, FormatDateFactory} from '../../functions';
-import {SelectObjectField} from '../../models/fields/select-object.field';
+import {BuildEndpointFactory} from '../../functions';
+import {SelectObjectField} from '../../models/fields';
 import {RequestQueryBuilder} from '@nestjsx/crud-request';
+import {Bound} from '../bound';
+import {NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
-  selector: 'lib-field-select-object',
-  templateUrl: './field-select-object.component.html',
-  styleUrls: ['./field-select-object.component.css']
+  selector: 'lib-bound-select-object',
+  template: `
+    <div [formGroup]="form" *ngIf="field">
+      <nz-select class="mr-3"
+                 [nzPlaceHolder]="field.label"
+                 nzAllowClear
+                 nzShowSearch
+                 nzServerSearch
+                 [formControlName]="field.key"
+                 (nzOnSearch)="onSearch($event)">
+        <ng-container *ngFor="let o of optionList">
+          <nz-option *ngIf="!isLoading" [nzValue]="o.value" [nzLabel]="o.label"></nz-option>
+        </ng-container>
+        <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
+          <i nz-icon nzType="loading" class="loading-icon"></i> Loading Data...
+        </nz-option>
+      </nz-select>
+    </div>
+  `
 })
-export class FieldSelectObjectComponent extends FieldBase<SelectObjectField> implements OnInit {
+export class BoundSelectObjectComponent extends Bound implements OnInit {
   searchChange$ = new BehaviorSubject('');
   optionList: { value: any, label: string }[] = [];
   isLoading = false;
 
-  constructor(private http: HttpClient, private buildEndpointFactory: BuildEndpointFactory, private formatDateFactory: FormatDateFactory) {
+  constructor(private http: HttpClient, private buildEndpointFactory: BuildEndpointFactory) {
     super();
-    console.log(this.formatDateFactory.formatDate(new Date(), 'dd/MM/yyyy'));
+  }
+
+  ngOnInit(): void {
+    this.subscribeData();
   }
 
   onSearch(value: string): void {
     this.isLoading = true;
     this.searchChange$.next(value);
-  }
-
-  ngOnInit(): void {
-    this.subscribeData();
   }
 
   subscribeData(): void {
@@ -46,7 +63,7 @@ export class FieldSelectObjectComponent extends FieldBase<SelectObjectField> imp
   getData(searchStr: string): Observable<{ value: any, label: string }[]> {
     const options = {search: {name: {$contL: searchStr}}};
     const queryString = RequestQueryBuilder.create(options).query();
-    return this.http.get(this.buildEndpointFactory.buildUrl(this.field.endpoint) + '?' + queryString)
+    return this.http.get(this.buildEndpointFactory.buildUrl((this.field as SelectObjectField).endpoint) + '?' + queryString)
       .pipe(
         map((resp: any) => {
           if (resp.data) {
@@ -61,4 +78,3 @@ export class FieldSelectObjectComponent extends FieldBase<SelectObjectField> imp
       );
   }
 }
-

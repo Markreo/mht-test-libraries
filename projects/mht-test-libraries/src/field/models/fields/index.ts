@@ -9,4 +9,5 @@ export * from './select-date-future.field';
 export * from './select-date-past.field';
 export * from './select-date-time.field';
 export * from './select-enum.field';
+export * from './select-object.field';
 export * from './select-time.field';
