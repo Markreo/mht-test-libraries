@@ -1,27 +1,27 @@
-import {Component, forwardRef, OnInit} from '@angular/core';
-import {FieldBase} from '../field-base';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {debounceTime, map, switchMap} from 'rxjs/operators';
 import {BuildEndpointFactory} from '../../functions';
 import {SelectObjectField} from '../../models/fields';
-import {RequestQueryBuilder} from '@nestjsx/crud-request';
+import {CreateQueryParams, RequestQueryBuilder} from '@nestjsx/crud-request';
 import {Bound} from '../bound';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
   selector: 'lib-bound-select-object',
   template: `
     <div [formGroup]="form" *ngIf="field">
       <nz-select class="mr-3"
+                 [nzLoading]="isLoading"
                  [nzPlaceHolder]="field.label"
                  nzAllowClear
                  nzShowSearch
                  nzServerSearch
                  [formControlName]="field.key"
+                 [compareWith]="compareIdFn"
                  (nzOnSearch)="onSearch($event)">
         <ng-container *ngFor="let o of optionList">
-          <nz-option *ngIf="!isLoading" [nzValue]="o.value" [nzLabel]="o.label"></nz-option>
+          <nz-option *ngIf="!isLoading" [nzValue]="o" [nzLabel]="o.name"></nz-option>
         </ng-container>
         <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
           <i nz-icon nzType="loading" class="loading-icon"></i> Loading Data...
@@ -32,7 +32,7 @@ import {NG_VALUE_ACCESSOR} from '@angular/forms';
 })
 export class BoundSelectObjectComponent extends Bound implements OnInit {
   searchChange$ = new BehaviorSubject('');
-  optionList: { value: any, label: string }[] = [];
+  optionList: { id: any, name: string }[] = [];
   isLoading = false;
 
   constructor(private http: HttpClient, private buildEndpointFactory: BuildEndpointFactory) {
@@ -60,21 +60,20 @@ export class BoundSelectObjectComponent extends Bound implements OnInit {
     });
   }
 
-  getData(searchStr: string): Observable<{ value: any, label: string }[]> {
-    const options = {search: {name: {$contL: searchStr}}};
+  getData(searchStr: string): Observable<{ id: any, name: string }[]> {
+    const options: CreateQueryParams = {fields: ['id', 'name'], search: {name: {$contL: searchStr}}};
     const queryString = RequestQueryBuilder.create(options).query();
-    return this.http.get(this.buildEndpointFactory.buildUrl((this.field as SelectObjectField).endpoint) + '?' + queryString)
+    return this.http.get<{ count: number, data: any[], page: number, total: number }>(this.buildEndpointFactory.buildUrl((this.field as SelectObjectField).endpoint) + '?' + queryString)
       .pipe(
-        map((resp: any) => {
+        map((resp) => {
           if (resp.data) {
-            return resp.data.map((item: any) => {
-              return {
-                value: item,
-                label: item.name
-              };
-            });
+            return resp.data;
           }
+          return [];
         })
       );
   }
+
+  compareIdFn = (o1: any, o2: any) => (o1 && o2 ? o1.id === o2.id : o1 === o2);
+
 }
