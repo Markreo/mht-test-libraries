@@ -3,6 +3,8 @@ export * from './input-currency.field';
 export * from './input-number.field';
 export * from './input-password.field';
 export * from './input-text.field';
+export * from './input-textarea.field';
+export * from './select-date.field';
 export * from './select-date-future.field';
 export * from './select-date-past.field';
 export * from './select-date-time.field';

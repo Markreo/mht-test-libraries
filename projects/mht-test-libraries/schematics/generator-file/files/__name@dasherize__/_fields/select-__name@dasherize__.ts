@@ -1,9 +1,9 @@
-import {SelectObject} from '../../field/components/select-object';
+import {SelectObjectField} from 'mht-test-libraries';
 import {Validators} from '@angular/forms';
 import {ENDPOINT_<%= name.toUpperCase() %>, LABEL_<%= name.toUpperCase() %>} from '../_constants/<%= dasherize(name) %>.const';
 
-export class Select<%= classify(name) %> extends SelectObject {
-  constructor(options: Partial<Select<%= classify(name) %>> = {}) {
+export class Select<%= classify(name) %>Field extends SelectObjectField {
+  constructor(options: Partial<Select<%= classify(name) %>Field> = {}) {
     const init = {
       key: '<%= underscore(name) %>',
       label: LABEL_<%= name.toUpperCase() %>,

@@ -11,9 +11,7 @@ import {Bound} from '../bound';
     </div>
   `
 })
-export class BoundInputTextComponent extends Bound implements OnInit {
-  ngOnInit(): void {
-  }
+export class BoundInputTextComponent extends Bound {
 }
 
 @Component({

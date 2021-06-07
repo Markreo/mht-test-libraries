@@ -1,9 +1,12 @@
 import {BaseField} from '../models/fields';
 import {AbstractControl, ControlValueAccessor, ValidationErrors, Validator, ValidatorFn} from '@angular/forms';
-import {Injectable, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {noop} from 'rxjs';
 
-@Injectable()
+@Component({
+  template: ``
+})
+// tslint:disable-next-line:component-class-suffix
 export class FieldBase<T extends BaseField = BaseField> implements ControlValueAccessor, Validator {
   @Input() field: T;
   isDisabled = false;

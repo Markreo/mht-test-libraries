@@ -1,15 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, forwardRef, OnInit} from '@angular/core';
+import {Bound} from '../bound';
+import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {FieldBase} from '../field-base';
+
+@Component({
+  selector: 'lib-bound-input-text',
+  template: `
+    <div [formGroup]="form">
+      <lib-field-input-text [field]="field" [formControlName]="field.key"></lib-field-input-text>
+    </div>
+  `
+})
+export class BoundSelectDateComponent extends Bound {
+}
 
 @Component({
   selector: 'lib-field-select-date',
-  templateUrl: './field-select-date.component.html',
-  styleUrls: ['./field-select-date.component.css']
+  template: '<nz-date-picker [(ngModel)]="value" [nzPlaceHolder]="field?.label"></nz-date-picker>',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => FieldSelectDateComponent),
+      multi: true
+    }
+  ]
 })
-export class FieldSelectDateComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+export class FieldSelectDateComponent extends FieldBase {
+  constructor() {
+    super();
   }
-
 }
+

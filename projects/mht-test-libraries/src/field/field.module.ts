@@ -10,7 +10,11 @@ import {
   FieldInputPasswordComponent,
   FieldInputTextComponent,
   FieldSelectEnumComponent,
-  FieldSelectObjectComponent
+  FieldSelectObjectComponent,
+  FieldInputTextareaComponent,
+  BoundInputTextareaComponent,
+  BoundSelectDateComponent,
+  FieldSelectDateComponent
 } from './components';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NzInputModule} from 'ng-zorro-antd/input';
@@ -24,10 +28,12 @@ const exs = [
   FieldInputNumberComponent,
   FieldInputPasswordComponent,
   FieldSelectEnumComponent,
-  FieldSelectObjectComponent
+  FieldSelectObjectComponent,
+  FieldInputTextareaComponent,
+  FieldSelectDateComponent
 ];
 
-const bounds = [BoundInputTextComponent, BoundInputPasswordComponent];
+const bounds = [BoundInputTextComponent, BoundInputPasswordComponent, BoundInputTextareaComponent, BoundSelectDateComponent];
 
 @NgModule({
   declarations: [...exs, ...bounds],
