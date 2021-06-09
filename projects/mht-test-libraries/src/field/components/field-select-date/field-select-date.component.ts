@@ -4,10 +4,10 @@ import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {FieldBase} from '../field-base';
 
 @Component({
-  selector: 'lib-bound-input-text',
+  selector: 'lib-bound-select-date',
   template: `
-    <div [formGroup]="form">
-      <lib-field-input-text [field]="field" [formControlName]="field.key"></lib-field-input-text>
+    <div *ngIf="field" [formGroup]="form">
+      <nz-date-picker [formControlName]="field.key" [nzPlaceHolder]="field.label"></nz-date-picker>
     </div>
   `
 })

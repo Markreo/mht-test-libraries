@@ -21,6 +21,7 @@ import {NzSelectModule} from 'ng-zorro-antd/select';
 import {FieldComponent} from './components/field/field.component';
 import {CommonModule} from '@angular/common';
 import {NzIconModule} from 'ng-zorro-antd/icon';
+import {NzDatePickerModule} from 'ng-zorro-antd/date-picker';
 
 const exs = [
   FieldComponent,
@@ -47,6 +48,7 @@ const bounds = [
     ReactiveFormsModule,
     NzInputModule,
     NzSelectModule,
+    NzDatePickerModule,
     FormsModule,
     NzIconModule
   ],

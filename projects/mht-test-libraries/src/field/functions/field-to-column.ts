@@ -7,6 +7,7 @@ export function fieldToColumn(field: BaseField): TableColumn {
     label: field.label,
     renderValue: (row) => {
       return field.renderValue(row);
-    }
+    },
+    field
   });
 }

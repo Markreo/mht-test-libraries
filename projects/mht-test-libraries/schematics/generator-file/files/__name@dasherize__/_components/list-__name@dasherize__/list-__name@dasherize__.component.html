@@ -88,8 +88,9 @@
     <td>
       <a [routerLink]="['form', data.id]">Edit</a>
       <nz-divider nzType="vertical"></nz-divider>
-      <a [routerLink]="['form', data.id]" class="text-danger" nz-typography nzType="danger"
-         (click)="handleDelete(data)">Delete</a>
+      <a class="text-danger" nz-typography nzType="danger" nz-popconfirm
+         nzPopconfirmTitle="Bạn chắc chắn muốn xoá {{title}} này không?"
+         (nzOnConfirm)="handleDelete(data)">Delete</a>
     </td>
   </tr>
   </tbody>
