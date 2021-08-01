@@ -2,6 +2,8 @@ import {Component, forwardRef, OnInit} from '@angular/core';
 import {Bound} from '../bound';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {FieldBase} from '../field-base';
+import DateTimeFormat = Intl.DateTimeFormat;
+import {SelectDateField} from "../../models/fields";
 
 @Component({
   selector: 'lib-bound-select-date',
@@ -25,7 +27,7 @@ export class BoundSelectDateComponent extends Bound {
     }
   ]
 })
-export class FieldSelectDateComponent extends FieldBase {
+export class FieldSelectDateComponent extends FieldBase<SelectDateField> {
   constructor() {
     super();
   }
